@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Grupo Recreativo Mirandense</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" id="grid" href="assets/css/skelgrid.css" />
+		<link rel="icon" href="images/logogrmwhite.png" sizes="100x78" type="img/png">
+
+		<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<link rel="stylesheet" href="assets/css/bootstrapcounter.css" />
+		<script src="assets/js/bootstrapcounter.js"></script> -->
+
+	  <script>
+	    var canvas = null;
+	    var contexto = null;
+	    var pecas = null;
+	    var pecasFundo = null;
+	    var pecaSeleccionada = 0;
+	    var distX = 0;
+	    var distY = 0;
+	    var ratoX = 0;
+	    var ratoY = 0;
+	    var contador=0;
+
+	    // INICIA JOGO
+	    function inicia() {
+	      canvas = document.getElementById("canvas");
+	      contexto = canvas.getContext("2d");
+	      pecas = new Array();
+	      pecasFundo = new Array();
+
+
+	      for (i = 0; i < 4; i++) {
+	        for (j = 0; j < 4; j++) {
+	          var pecaXY = document.getElementById("pecaX" + j + "Y" + i);
+	          pecas.push(new GraficoImagem(canvas.width * 0.5 + Math.random() * canvas.width * 0.5, Math.random() * canvas.height * 0.5, pecaXY));
+	          pecasFundo.push(new GraficoBloco(i * pecaXY.width, j * pecaXY.height, pecaXY.width, pecaXY.height, "transparent"));
+	        }
+	      }
+	        distX = 0;
+	        distY = 0;
+	        ratoX = 0;
+	        ratoY = 0;
+	        pecaSeleccionada = -1;
+	    }
+
+
+	    function desenha() {
+	        contexto.clearRect(0, 0, canvas.width, canvas.height);
+	        var img=document.getElementById("cenario");
+
+	        contexto.drawImage(img,0,0,636.3,canvas.height);
+
+	        for (i = 0; i < pecasFundo.length; i++) {
+	        pecasFundo[i].desenha(canvas);
+	            }
+
+	        for (i = 0; i < pecas.length; i++) {
+	        pecas[i].desenha(canvas);
+	            }
+
+	        for (i = 0; i < pecas.length; i++) {
+	            if (i == pecaSeleccionada) {
+	                pecas[i].x = ratoX - distX;
+	                pecas[i].y = ratoY - distY;
+	            }
+	        }
+
+	    requestAnimationFrame(desenha);
+	    }
+
+
+	      function processaRatoSeleccionaPeca(evento) {
+	          ratoX = evento.pageX - canvas.offsetLeft;
+	          ratoY = evento.pageY - canvas.offsetTop;
+
+	          for (i = 0; i < pecas.length; i++) {
+	              if (pecas[i].colideRect(ratoX, ratoY, 0, 0)) {
+	                  distX = ratoX - pecas[i].x;
+	                  distY = ratoY - pecas[i].y;
+	                  pecaSeleccionada = i;
+	              }
+	          }
+	      }
+
+
+	      function processaRatoMovePeca(evento) {
+	          if (pecaSeleccionada >= 0) {
+	              ratoX = evento.pageX - canvas.offsetLeft;
+	            ratoY = evento.pageY - canvas.offsetTop;
+	          }
+	      }
+
+
+	      function processaRatoLibertaPeca(evento) {
+	          for (i = 0; i < pecasFundo.length; i++) {
+	              if (pecasFundo[i].colideRect(pecas[i].x, pecas[i].y, pecas[i].largura, pecas[i].altura)) {
+	                  pecas[i].x = pecasFundo[i].x;
+	                  pecas[i].y = pecasFundo[i].y;
+	                  contador++;
+
+
+
+	                  }
+	          }
+	          pecaSeleccionada = -1;
+
+	            if (contador == 16) {
+	                var pop = document.getElementById ( "alerta_fim");
+	                pop.style.display = 'inline';
+	                contador = 0;
+	            }
+	      }
+
+
+	      function reinicia(){
+
+
+	          inicia();
+	          desenha();
+	      }
+
+	  </script>
+	</head>
+	<body class="landing" onload="iniciaSomPuzzle(); inicia(); desenha();" onmousedown="processaRatoSeleccionaPeca(event);" onmousemove="processaRatoMovePeca(event);" onmouseup="processaRatoLibertaPeca(event);">
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+			<header id="header" class="alt">
+				<!-- <h1><a href="index.html"><img src="images/logogrm.png" alt="" /></a></h1> -->
+				<!-- <h1><strong><a href="index.html">GR</a></strong>M</h1> -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html"><img src="images/logogrmwhite.png" alt="" /></a></li>
+						<li><a href="about.html">Sobre Nós</a></li>
+						<li><a href="filarmonica.html">Filarmónica Mirandense</a></li>
+						<li><a href="escola.html">Escola de Música</a></li>
+						<li><a href="coro.html">Coro</a></li>
+						<li><a href="eventos.html">Eventos</a></li>
+						<li><a href="galeria.html">Galeria</a></li>
+						<li><a href="contactos.html">Contactos</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+			<section id="smallbanner"></section>
+
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<h2>Escola de Música</h2>
+						<p>Grupo Recreativo Mirandense</p>
+					</header>
+
+					<p><strong>A Escola de Música rege-se por alguns princípios que norteiam a sua actividade:</strong></p>
+
+					<div class="row">
+						<div class="6u 12u$(xsmall)">
+							<ul class="alt">
+								<li>Promover a aprendizagem da Música em contexto de ensino especializado</li>
+								<li>Contribuir para a formação integral dos seus alunos como cidadãos cultos</li>
+								<li>Promover a prática e fruição da Música no concelho de Miranda do Corvo</li>
+								<li>Contribuir para o enriquecimento educativo e cultural da população em geral</li>
+								<li>Preparar alunos para integrarem a Banda Filarmónica da instituição</li>
+							</ul>
+
+						</div>
+					</div>
+
+					<p>Como referido anteriormente, a Escola de Música do GRM tem como pilar a formação de músicos para integrar a Banda Filarmónica Mirandense. Contudo, a Escola está totalmente aberta à comunidade, recebendo qualquer pessoa que queira aprender apenas um instrumento por gosto. Estes alunos designam-se por alunos externos, e é da sua responsabilidade a aquisição e manutenção do instrumento musical.</p>
+
+				</div>
+			</section>
+
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<p>Oferta Educativa</p>
+					</header>
+
+					<div class="row">
+						<div class="6u 12u$(xsmall)">
+							<ul class="alt">
+								<li><a href="#">Aulas de Bebés (2 a 3 anos)</a></li>
+								<li><a href="#">Aulas de Expressão Musical (4 a 6 anos)</a></li>
+								<li><a href="#">Formação Musical (Adultos e Crianças)</a></li>
+								<li><a href="#">Aulas de Instrumento</a></li>
+								<li><a href="#">Banda dos Vicentes</a></li>
+							</ul>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="wrapper style3 special">
+				<div class="container">
+					<header class="major">
+						<h2>Escola de Música</h2>
+						<p>Faça agora a sua inscrição</p>
+					</header>
+					<ul class="actions" class="container">
+						<li><a href="escolaform.html" class="button special big">Inscreva-se aqui</a></li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<p>Jogo Didático</p>
+					</header>
+
+					<<div id="alerta_fim" style="display:none">
+			        <div id="botaofechar" onclick="this.parentElement.style.display='none'; reinicia();">&times;</div>
+			        <strong>Parabéns! </strong><p> conseguiste completar o puzzle! <br> <br> Clica no <strong>X</strong> para jogar de novo! </p>
+			    </div>
+
+			    <div id="puzzle">
+			        <img id="pecaX0Y0" src="images/jogo/1.png" />
+			        <img id="pecaX1Y0" src="images/jogo/5.png" />
+			        <img id="pecaX2Y0" src="images/jogo/9.png" />
+			        <img id="pecaX3Y0" src="images/jogo/13.png" />
+			        <img id="pecaX0Y1" src="images/jogo/2.png" />
+			        <img id="pecaX1Y1" src="images/jogo/6.png" />
+			        <img id="pecaX2Y1" src="images/jogo/10.png" />
+			        <img id="pecaX3Y1" src="images/jogo/14.png" />
+			        <img id="pecaX0Y2" src="images/jogo/3.png" />
+			        <img id="pecaX1Y2" src="images/jogo/7.png" />
+			        <img id="pecaX2Y2" src="images/jogo/11.png" />
+			        <img id="pecaX3Y2" src="images/jogo/15.png" />
+			        <img id="pecaX0Y3" src="images/jogo/4.png" />
+			        <img id="pecaX1Y3" src="images/jogo/8.png" />
+			        <img id="pecaX2Y3" src="images/jogo/12.png" />
+			        <img id="pecaX3Y3" src="images/jogo/16.png" />
+			    </div>
+
+			    <canvas id="canvas" width="1200px" height="520px">
+			        <img src= "images/jogo/puzzle.png" id="cenario">
+			        O seu <em>browser</em> não suporta o elemento HTML5 <code>canvas</code>.
+			    </canvas>
+				</div>
+			</section>
+
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<p>Professores</p>
+					</header>
+
+				</div>
+			</section>
+
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="contactos.html" class="icon fa-map"></a></li>
+						<li><a href="contactos.html" class="icon fa-phone"></a></li>
+						<li><a href="contactos.html" class="icon fa-envelope"></a></li>
+						<li><a href="https://www.facebook.com/gruporecreativomirandense/" class="icon fa-facebook"></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; <a href="http://www.cm-mirandadocorvo.pt/pt/menu/530/grupo-recreativo-mirandense.aspx">GRM 2018</a></li>
+						<li>Design: Diana e Luís</li>
+					</ul>
+				</div>
+			</footer>
+
+	</body>
+</html>

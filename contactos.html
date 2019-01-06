@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Grupo Recreativo Mirandense</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" id="grid" href="assets/css/skelgrid.css" />
+		<link rel="icon" href="images/logogrmwhite.png" sizes="100x78" type="img/png">
+
+		<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<link rel="stylesheet" href="assets/css/bootstrapcounter.css" />
+		<script src="assets/js/bootstrapcounter.js"></script> -->
+	</head>
+	<body class="landing">
+
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/skel.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+
+			<header id="header" class="alt">
+				<!-- <h1><a href="index.html"><img src="images/logogrm.png" alt="" /></a></h1> -->
+				<!-- <h1><strong><a href="index.html">GR</a></strong>M</h1> -->
+				<nav id="nav">
+					<ul>
+						<li><a href="index.html"><img src="images/logogrmwhite.png" alt="" /></a></li>
+						<li><a href="about.html">Sobre Nós</a></li>
+						<li><a href="filarmonica.html">Filarmónica Mirandense</a></li>
+						<li><a href="escola.html">Escola de Música</a></li>
+						<li><a href="coro.html">Coro</a></li>
+						<li><a href="eventos.html">Eventos</a></li>
+						<li><a href="galeria.html">Galeria</a></li>
+						<li><a href="contactos.html">Contactos</a></li>
+					</ul>
+				</nav>
+			</header>
+
+			<a href="#menu" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+
+			<section id="smallbanner"></section>
+
+			<section id="main" class="wrapper">
+				<div class="container">
+
+					<header class="major special">
+						<h2>Contactos</h2>
+						<p>Entre Em Contacto Connosco</p>
+					</header>
+
+					<p><strong>Telefone:</strong> 233 333 333</p>
+					<p><strong>Facebook:</strong> <a href="https://www.facebook.com/gruporecreativomirandense/">facebook.com/gruporecreativomirandense</a></p>
+					<br><br><br>
+
+					<section>
+						<h3>Mensagem</h3>
+						<form method="post" action="#">
+							<div class="row uniform 50%">
+								<div class="6u 12u$(xsmall)">
+									<input type="text" name="name" id="name" value="" placeholder="Nome" />
+								</div>
+								<div class="6u$ 12u$(xsmall)">
+									<input type="email" name="email" id="email" value="" placeholder="Email" />
+								</div>
+								<div class="12u$">
+									<div class="select-wrapper">
+										<select name="category" id="category">
+											<option value=""> - Assunto - </option>
+											<option value="1">Filarmónica Mirandense</option>
+											<option value="1">Escola De Música</option>
+											<option value="1">Coro</option>
+											<option value="1">Outro</option>
+										</select>
+									</div>
+								</div>
+								<div class="12u$">
+									<textarea name="message" id="message" placeholder="Escreva a sua mensagem" rows="6"></textarea>
+								</div>
+								<div class="12u$">
+									<ul class="actions">
+										<li><input type="submit" value="Enviar" class="special" /></li>
+										<li><input type="reset" value="Limpar" /></li>
+									</ul>
+								</div>
+							</div>
+						</form>
+					</section>
+					<br><br><br>
+					<section class="container">
+							<div>
+									<header>
+											<h2>Localização Das Nossas Instalações</h2>
+									</header>
+									<div id="google-map"></div>
+							</div>
+					</section>
+
+				</div>
+			</section>
+
+			<script src="https://maps.google.com/maps/api/js"></script>
+			<script src="assets/js/gmaps.js"></script>
+			<script>
+				new GMaps({
+					div: '#google-map',
+					lat: 40.109663,
+					lng: -8.343050
+				});
+			</script>
+
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="contactos.html" class="icon fa-map"></a></li>
+						<li><a href="contactos.html" class="icon fa-phone"></a></li>
+						<li><a href="contactos.html" class="icon fa-envelope"></a></li>
+						<li><a href="https://www.facebook.com/gruporecreativomirandense/" class="icon fa-facebook"></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; <a href="http://www.cm-mirandadocorvo.pt/pt/menu/530/grupo-recreativo-mirandense.aspx">GRM 2018</a></li>
+						<li>Design: Diana e Luís</li>
+					</ul>
+				</div>
+			</footer>
+
+	</body>
+</html>
